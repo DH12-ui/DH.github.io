@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        html{
+            height: 100%;
+        }
+        .nav{
+            display: flex;
+            list-style: circle;
+            margin-top: 0;
+            background-color: black;
+            border-radius: 10%;
+        }
+        li{
+            width: 100%;
+            line-height: 20px;
+            text-align: center;
+            margin: 0 10px;
+            background-color:rebeccapurple;
+            font-size: 18px;
+            color:#fff;
+            box-shadow: darkgrey 10px 10px 30px 5px;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+        body{
+            background-image: url("https://img.zcool.cn/community/01b8155e8d6d42a801216518ba7e2b.jpg@1280w_1l_2o_100sh.jpg");
+            background-size: 100%;
+            position:fixed;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li data-src="./cartoon.html">童年动画片集锦</li>
+        <li data-src="./KJYS.html">铠甲勇士英雄介绍</li>
+        <li data-src="./DLDL.html">斗罗大陆</li>
+        <li data-src="./Thingking.html">人生感悟</li>
+        <li data-src=" https://dh12-ui.github.io/DH.github.io/Web应用基础.docx">结业报告</li>
+    </ul>
+    <!-- 使用iframe标签切换 最好src默认值为空-->
+    <iframe src="" frameborder="" id="iframe"></iframe>
+    <script>
+        let arr = ['./cartoon.html','./KJYS.html','./DLDL.html','./Thingking.html']
+        let iframe = document.querySelector('#iframe')
+        let lis = document.querySelectorAll('li')
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onclick = function(event){
+                iframe.src = event.target.dataset.src;
+            }
+            
+        }
+    </script>
+</body>
+</html>

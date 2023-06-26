@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.acwing.com/static/jquery/js/jquery-3.3.1.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 2%;
+            align-items: center;
+            margin: -20px 0 50px;
+            height: 90vh;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: .5px;
+            margin: 20px 0 30px;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+            position: relative;
+            overflow: hidden;
+            width: 700px;
+            max-width: 100%;
+            height: 500px;
+        }
+
+        .form-container form {
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+
+        button {
+            border-radius: 20px;
+            border: 1px solid #ff4b2b;
+            background: #ff4b2b;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+        }
+
+        button:active {
+            transform: scale(.95);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button.ghost {
+            background: transparent;
+            border-color: #fff;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all .6s ease-in-out;
+        }
+
+        .KJ-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .KJ-up-container {
+            left: 0;
+            width: 50%;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform .6s ease-in-out;
+            z-index: 100;
+        }
+
+        .overlay {
+            background-image: linear-gradient(120deg, #3498db, #8e44ad);
+            color: #fff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateY(0);
+            transition: transform .6s ease-in-out;
+        }
+
+        .overlay-panel {
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            height: 100%;
+            width: 50%;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform .6s ease-in-out;
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateY(0);
+
+        }
+
+        .overlay-left {
+            transform: translateY(-20%);
+        }
+
+        .container.right-panel-active .KJ-in-container {
+            transform: translateY(100%);
+        }
+
+        .container.container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        .container.right-panel-active .KJ-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        .container.container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        .container.container.right-panel-active .overlay-left {
+            transform: translateY(0);
+        }
+
+        .container.container.right-panel-active .overlay-right {
+            transform: translateY(20%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="KJ-box">
+        <div class="form-container KJ-up-container">
+            <form>
+                <h1 style="font-style: italic;">飞影</h1>
+                <img src="https://img.zcool.cn/community/01a069554c10dc000001bf72621418.jpg@2o.jpg">
+            </form>
+        </div>
+        <div class="form-container KJ-in-container">
+            <form action="#">
+                <h1>简介</h1>
+                <p> One of the Armor Warriors, appearing in the first episode. Originally a Yanxing vice-general-level
+                    armor, the Lufa army was brought back to Ares after breaking the Yanxing, and after transformation,
+                    it was developed in batches, and became a combat weapon used by Ares warriors to maintain security
+                    in the galaxy and defend justice in the galaxy. The Flying Shadow armor is mainly blue, and the
+                    speed, jump, and explosiveness are the strongest of the three armors, but because it is a light
+                    armor, it is at a loss in defense and endurance.</p>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <button class="ghost" id="KJIn">简介</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <button class="ghost" id="KJUp">飞影</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $("#KJUp").click(function () {
+        $("#KJ-box").addClass('right-panel-active')
+    })
+
+    $("#KJIn").click(function () {
+        $("#KJ-box").removeClass('right-panel-active')
+    })
+</script>
+
+</html>
