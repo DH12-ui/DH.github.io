@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问答游戏</title>
+    <style>
+        html{
+            background-image: url("https://img.soogif.com/rQLCZEKFpdPiL3T92eqd7ImAirWXDgiG.gif");
+            background-size: 100%;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            text-align: center;
+
+        }
+
+        h1 {
+            font-size: 100px;
+            color: red;
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-family: Cursive, "Brush Script MT", sans-serif;
+            color: #007bff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px red;
+            /*border-radius:50%;*/
+        }
+        .image-popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .image-popup img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 >问答游戏</h1>
+    <p id="question">问题将显示在这里</p>
+    <button onclick="checkAnswer(true)">正确</button>
+    <button onclick="checkAnswer(false)">错误</button>
+    <p id="result"></p>
+    <button onclick="nextQuestion()">Next</button>
+</div>
+<!--<button onclick="showImage()">点击弹出图片</button>-->
+<div id="imagePopup" class="image-popup" onclick="closeImage()">
+    <img src="https://img.wowoqq.com/allimg/180607/1-1P60F30315-50.jpg" alt="弹出图片">
+</div>
+
+<script>
+    var questions = [
+        {
+            question: "地球是平的。",
+            answer: false
+        },
+        {
+            question: "猫是哺乳动物。",
+            answer: true
+        },
+        {
+            question: "巴黎是法国的首都。",
+            answer: true
+        },
+        {
+            question: "水是一种金属。",
+            answer: false
+        },
+        {
+            question: "你是不是傻子???",
+            answer: false
+        }
+    ];
+
+    var currentQuestionIndex = 0;
+    var resultElement = document.getElementById("result");
+    var questionElement = document.getElementById("question");
+    function showImage() {
+        document.getElementById("imagePopup").style.display = "flex";
+    }
+    function closeImage() {
+        document.getElementById("imagePopup").style.display = "none";
+    }
+    function showQuestion() {
+        var currentQuestion = questions[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.question;
+        resultElement.textContent = "";
+    }
+
+    function checkAnswer(userAnswer) {
+        var currentQuestion = questions[currentQuestionIndex];
+        if(currentQuestion.question==="你是不是傻子???"&&currentQuestion.answer===false){
+            document.getElementById("imagePopup").style.display = "flex";
+        }
+        else{
+            if (userAnswer === currentQuestion.answer) {
+                resultElement.textContent = "回答正确！";
+                resultElement.style.color = "green";
+                resultElement.style.fontWeight="bold";
+            } else {
+                resultElement.textContent = "回答错误！";
+                resultElement.style.color = "red";
+                resultElement.style.fontWeight="bold";
+            }
+        }
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex >= questions.length) {
+            currentQuestionIndex = 0;
+        }
+        showQuestion();
+    }
+
+    showQuestion();
+</script>
+</body>
+</html>
